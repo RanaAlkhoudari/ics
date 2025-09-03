@@ -1,0 +1,30 @@
+<form [formGroup]="uploadForm" class="max-w-lg mx-auto mt-10 p-8 bg-white rounded shadow">
+  <h2 class="text-2xl font-bold mb-6 text-center">Upload Documents</h2>
+
+  <div class="mb-6">
+    <label class="block mb-1 font-medium" for="documents">IB aangifte</label>
+    <input id="documents" type="file" (change)="onFileChange($event)" multiple class="w-full px-3 py-2 border rounded focus:outline-none focus:ring" />
+    <div *ngIf="uploadedFiles.length" class="mt-2">
+      <span class="font-semibold">Selected files:</span>
+      <ul>
+        <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <label class="block mb-1 font-medium" for="jaarrekening">Jaar rekening</label>
+    <input id="jaarrekening" type="file" (change)="onJaarrekeningChange($event)" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring" />
+    <div *ngIf="uploadedJaarrekening" class="mt-2">
+      <span class="font-semibold">Selected Jaar rekening:</span>
+      <ul>
+        <li>{{ uploadedJaarrekening.name }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex justify-between">
+    <button type="button" (click)="onBack()" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">Back</button>
+    <button type="button" (click)="onNext()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">Next</button>
+  </div>
+</form>
