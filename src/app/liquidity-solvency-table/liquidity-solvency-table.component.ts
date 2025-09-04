@@ -11,6 +11,6 @@ import {NgForOf} from '@angular/common';
 })
 export class LiquiditySolvencyTableComponent {
 
-  protected fiscalYears: string[] = ['2022', '2023', '2024'];
+  protected fiscalYears: string[] = ['2023', '2024'];
 
 }

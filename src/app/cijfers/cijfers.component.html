@@ -1,190 +1,76 @@
-<div class="max-w-4xl mx-auto w-full mt-10 p-8 bg-white rounded shadow">
+<div class="max-w-5xl mx-auto mt-10 p-8 bg-white rounded shadow">
   <h2 class="text-2xl font-bold mb-6 text-center">Cijfers</h2>
 
   <section class="mb-6">
     <h3 class="text-lg font-semibold mb-2">Activa</h3>
-    <div class="p-4 bg-gray-50 rounded grid gap-4">
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="immateriele">Immateriële vaste activa</label>
-        <input id="immateriele" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="machines">Machines en installaties</label>
-        <input id="machines" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="autos">Auto's en overige transportmiddelen</label>
-        <input id="autos" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-materiele">Totaal materiële vaste activa</label>
-        <input id="totaal-materiele" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="vorderingen-overlopende">Vorderingen en overlopende activa</label>
-        <input id="vorderingen-overlopende" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="vorderingen-handelsdebiteuren">Vorderingen op handelsdebiteuren</label>
-        <input id="vorderingen-handelsdebiteuren" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="overige-vorderingen">Overige vorderingen</label>
-        <input id="overige-vorderingen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-vorderingen">Totaal vorderingen</label>
-        <input id="totaal-vorderingen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="effecten-liquide">Effecten en liquide middelen</label>
-        <input id="effecten-liquide" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="banktegoeden">Banktegoeden</label>
-        <input id="banktegoeden" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-effecten">Totaal effecten en liquide middelen</label>
-        <input id="totaal-effecten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-activa">Totaal activa</label>
-        <input id="totaal-activa" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-    </div>
+    <table class="min-w-full mb-4">
+      <thead>
+      <tr>
+        <th class="px-4 py-2 w-72 text-left">&nbsp;</th>
+        <th *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-center">{{ year }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of activaFields">
+        <td class="px-4 py-2 font-medium w-72 text-left">{{ field.label }}</td>
+        <td *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-right">
+          <input
+            type="number"
+            [(ngModel)]="activaValues[field.key][year]"
+            class="w-full px-2 py-1 border rounded text-right ml-4"
+          />
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="mb-6">
     <h3 class="text-lg font-semibold mb-2">Passiva</h3>
-    <div class="p-4 bg-gray-50 rounded grid gap-4">
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="ondernemingsvermogen">Ondernemingsvermogen</label>
-        <input id="ondernemingsvermogen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="eigen-vermogen">Eigen vermogen/Fiscaal ondernemingsvermogen</label>
-        <input id="eigen-vermogen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="kortlopende-schulden">Kortlopende schulden</label>
-        <input id="kortlopende-schulden" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="schulden-leveranciers">Schulden aan leveranciers en handelskredieten</label>
-        <input id="schulden-leveranciers" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="verschuldigde-omzetbelasting">Verschuldigde omzetbelasting</label>
-        <input id="verschuldigde-omzetbelasting" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-kortlopende-schulden">Totaal kortlopende schulden</label>
-        <input id="totaal-kortlopende-schulden" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-passiva">Totaal passiva</label>
-        <input id="totaal-passiva" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-    </div>
+    <table class="min-w-full mb-4">
+      <thead>
+      <tr>
+        <th class="px-4 py-2 w-72 text-left">&nbsp;</th>
+        <th *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-center">{{ year }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of passivaFields">
+        <td class="px-4 py-2 font-medium w-72 text-left">{{ field.label }}</td>
+        <td *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-right">
+          <input
+            type="number"
+            [(ngModel)]="passivaValues[field.key][year]"
+            class="w-full px-2 py-1 border rounded text-right ml-4"
+          />
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="mb-6">
     <h3 class="text-lg font-semibold mb-2">Resultatenrekening</h3>
-    <div class="p-4 bg-gray-50 rounded grid gap-4">
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="opbrengsten">Opbrengsten</label>
-        <input id="opbrengsten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="netto-omzet">Netto-omzet</label>
-        <input id="netto-omzet" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="som-bedrijfsopbrengsten">Som van de bedrijfsopbrengsten</label>
-        <input id="som-bedrijfsopbrengsten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="kosten-grond-hulpstoffen-uitbesteed">Kosten van grond- en hulpstoffen, uitbesteed werk e.d.</label>
-        <input id="kosten-grond-hulpstoffen-uitbesteed" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="kosten-grond-hulpstoffen-inkoop">Kosten van grond- en hulpstoffen, inkoopprijs van de verkopen</label>
-        <input id="kosten-grond-hulpstoffen-inkoop" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-kosten-grond-hulpstoffen-uitbesteed">Totaal kosten van grond- en hulpstoffen, uitbesteed werk e.d.</label>
-        <input id="totaal-kosten-grond-hulpstoffen-uitbesteed" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="afschrijvingen">Afschrijvingen</label>
-        <input id="afschrijvingen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="afschrijving-autos">Afschrijving auto's en overige transportmiddelen</label>
-        <input id="afschrijving-autos" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-afschrijvingen">Totaal afschrijvingen</label>
-        <input id="totaal-afschrijvingen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="overige-bedrijfskosten">Overige bedrijfskosten</label>
-        <input id="overige-bedrijfskosten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="autokosten-transportkosten">Autokosten en transportkosten</label>
-        <input id="autokosten-transportkosten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="verkoopkosten">Verkoopkosten</label>
-        <input id="verkoopkosten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="andere-kosten">Andere kosten</label>
-        <input id="andere-kosten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-overige-bedrijfskosten">Totaal overige bedrijfskosten</label>
-        <input id="totaal-overige-bedrijfskosten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="financiele-baten-lasten">Financiële baten en lasten</label>
-        <input id="financiele-baten-lasten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="opbrengst-overige-vorderingen">Opbrengst van overige vorderingen</label>
-        <input id="opbrengst-overige-vorderingen" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="kosten-schulden">Kosten van schulden, andere rentelasten en kosten</label>
-        <input id="kosten-schulden" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="totaal-financiele-baten-lasten">Totaal financiële baten en lasten</label>
-        <input id="totaal-financiele-baten-lasten" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="winstberekening">Winstberekening</label>
-        <input id="winstberekening" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="opbrengsten-winst">Opbrengsten</label>
-        <input id="opbrengsten-winst" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="kosten-winst">Kosten</label>
-        <input id="kosten-winst" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="financiele-baten-lasten-winst">Financiële baten en lasten</label>
-        <input id="financiele-baten-lasten-winst" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-      <div class="flex items-center gap-8 justify-between">
-        <label class="block font-medium min-w-[220px] text-left" for="saldo-winstberekening">Saldo winstberekening</label>
-        <input id="saldo-winstberekening" type="number" class="w-40 px-3 py-2 border rounded focus:outline-none focus:ring ml-auto" />
-      </div>
-    </div>
+    <table class="min-w-full mb-4">
+      <thead>
+      <tr>
+        <th class="px-4 py-2 w-72 text-left">&nbsp;</th>
+        <th *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-center">{{ year }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of resultatenrekeningFields">
+        <td class="px-4 py-2 font-medium w-72 text-left">{{ field.label }}</td>
+        <td *ngFor="let year of fiscalYears" class="px-4 py-2 w-40 text-right">
+          <input
+            type="number"
+            [(ngModel)]="resultatenrekeningValues[field.key][year]"
+            class="w-full px-2 py-1 border rounded text-right ml-4"
+          />
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="mb-6">
