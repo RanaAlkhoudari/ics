@@ -1,3 +1,14 @@
 @use "tailwindcss";
 
 /* You can add global styles to this file, and also import other style files */
+
+/* Make all main content areas wider */
+.container, .main-content, app-root, main {
+  max-width: 1400px !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
