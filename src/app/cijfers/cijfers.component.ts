@@ -16,7 +16,7 @@ export class CijfersComponent {
     this.activaFields.forEach(field => {
       this.activaValues[field.key] = {};
       this.fiscalYears.forEach(year => {
-        this.activaValues[field.key][year] = null;
+        this.activaValues[field.key][year] = this.getRandomValue();
       });
     });
 
@@ -24,7 +24,7 @@ export class CijfersComponent {
     this.passivaFields.forEach(field => {
       this.passivaValues[field.key] = {};
       this.fiscalYears.forEach(year => {
-        this.passivaValues[field.key][year] = null;
+        this.passivaValues[field.key][year] = this.getRandomValue();
       });
     });
 
@@ -32,12 +32,16 @@ export class CijfersComponent {
     this.resultatenrekeningFields.forEach(field => {
       this.resultatenrekeningValues[field.key] = {};
       this.fiscalYears.forEach(year => {
-        this.resultatenrekeningValues[field.key][year] = null;
+        this.resultatenrekeningValues[field.key][year] = this.getRandomValue();
       });
     });
   }
 
-  protected fiscalYears: string[] = ['2023', '2024'];
+  private getRandomValue(): number {
+    return Math.floor(Math.random() * (120000 - 200 + 1)) + 200;
+  }
+
+  protected fiscalYears: string[] = ['2022', '2023'];
 
   activaFields = [
     { label: 'Immateriële vaste activa', key: 'immateriele' },
@@ -103,5 +107,9 @@ export class CijfersComponent {
   onBack() {
     // Navigate back to the document upload page
     this.router.navigate(['/upload']);
+  }
+
+  onComplete() {
+    window.open('https://www.example.com', '_blank');
   }
 }

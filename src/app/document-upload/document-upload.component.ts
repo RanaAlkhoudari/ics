@@ -14,6 +14,7 @@ export class DocumentUploadComponent {
   uploadForm: FormGroup;
   uploadedFiles: File[] = [];
   uploadedJaarrekening: File | null = null;
+  isProcessing = false; // Flag to control spinner visibility
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.uploadForm = this.fb.group({
@@ -37,8 +38,11 @@ export class DocumentUploadComponent {
   }
 
   onNext() {
-    // Navigate to the Cijfers page
-    this.router.navigate(['/cijfers']);
+    this.isProcessing = true;
+    setTimeout(() => {
+      this.isProcessing = false;
+      this.router.navigate(['/cijfers']);
+    }, 10000); // 10 seconds delay
   }
 
   onBack() {

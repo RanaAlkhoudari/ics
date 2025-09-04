@@ -1,3 +1,8 @@
+<div *ngIf="isProcessing" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-20">
+  <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid mb-4"></div>
+  <div class="text-white text-xl font-semibold">Extracting content</div>
+</div>
+
 <form [formGroup]="uploadForm" class="max-w-4xl mx-auto w-full mt-10 p-8 bg-white rounded shadow">
   <h2 class="text-2xl font-bold mb-6 text-center">Upload Documents</h2>
 
@@ -25,6 +30,6 @@
 
   <div class="flex justify-between">
     <button type="button" (click)="onBack()" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">Back</button>
-    <button type="button" (click)="onNext()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">Next</button>
+    <button type="button" (click)="onNext()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition" [disabled]="isProcessing">Next</button>
   </div>
 </form>
